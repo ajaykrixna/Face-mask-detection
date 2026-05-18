@@ -28,3 +28,23 @@ data/
   without_mask/
     image1.jpg
     ...
+pip install tensorflow keras numpy matplotlib scikit-learn opencv-python kagglehub
+
+GPU recommended. Notebook is optimized for Kaggle P100. Mixed precision (float16) is enabled for speed.
+
+🚀 How to Run
+Step 1 — Download Dataset
+pythonimport kagglehub
+path = kagglehub.dataset_download("omkargurav/face-mask-dataset")
+Step 2 — Train the Model
+Run all cells in deep_learning.ipynb. The notebook will:
+
+Load and augment images via ImageDataGenerator
+Build and compile the CNN
+Train with EarlyStopping (max 30 epochs)
+Save the best model to mask_detector_cnn_best.h5
+
+Step 3 — Run Inference
+out = robust_predict("/path/to/your/image.jpg", show=True)
+print(out)
+# {'status': 'ok', 'method': 'dnn_ssd', 'predictions': [{'box': [...], 'label': 'with_mask', 'confidence': 0.97}]}
