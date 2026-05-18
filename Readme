@@ -63,3 +63,19 @@ Flatten
 Dense(128, relu) → BatchNorm → Dropout(0.4)
      │
 Dense(1, sigmoid)   ← Output: 0 = with_mask, 1 = without_mask
+
+Why this architecture?
+
+3 Conv blocks progressively extract features: edges → shapes → high-level patterns
+BatchNormalization keeps training stable
+Dropout prevents overfitting
+Sigmoid output works for binary (2-class) classification
+
+🛑 Callbacks
+EarlyStopping
+pythonEarlyStopping(monitor='val_loss', patience=6, restore_best_weights=True)
+Stops training if validation loss doesn't improve for 6 consecutive epochs. Restores the best weights automatically.
+ModelCheckpoint
+pythonModelCheckpoint('mask_detector_cnn_best.h5', monitor='val_accuracy', save_best_only=True)
+Saves model only when validation accuracy hits a new best.
+
