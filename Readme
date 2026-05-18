@@ -1,1 +1,11 @@
 Face Mask Detector
+
+📁 Project Structure
+face-mask-detection/
+│
+├── deep_learning.ipynb          # Main training notebook
+├── mask_detector_cnn_best.h5   # Saved best model (generated after training)
+├── label_map.json              # Index-to-label mapping {0: "with_mask", 1: "without_mask"}
+├── deploy.prototxt             # OpenCV DNN SSD face detector config
+├── res10_300x300_ssd_iter_140000.caffemodel  # Pre-trained face detector weights
+└── README.md
