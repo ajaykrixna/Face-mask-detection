@@ -9,3 +9,22 @@ face-mask-detection/
 ├── deploy.prototxt             # OpenCV DNN SSD face detector config
 ├── res10_300x300_ssd_iter_140000.caffemodel  # Pre-trained face detector weights
 └── README.md
+
+📦 Dataset
+
+Source: Kaggle — Face Mask Dataset by omkargurav
+Classes: 2
+
+with_mask — ~3725 images
+without_mask — ~3828 images
+
+
+Folder structure expected:
+data/
+  with_mask/
+    image1.jpg
+    image2.jpg
+    ...
+  without_mask/
+    image1.jpg
+    ...
