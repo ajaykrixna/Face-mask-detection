@@ -79,3 +79,32 @@ ModelCheckpoint
 pythonModelCheckpoint('mask_detector_cnn_best.h5', monitor='val_accuracy', save_best_only=True)
 Saves model only when validation accuracy hits a new best.
 
+🔍 Inference Pipeline
+At prediction time, the notebook uses OpenCV DNN SSD for face detection:
+Input Image
+     │
+DNN SSD Face Detector  ← Finds face bounding boxes
+     │
+Crop + Pad each face
+     │
+Resize to 128×128, normalize
+     │
+CNN predicts → prob > 0.5 → "without_mask"
+                prob ≤ 0.5 → "with_mask"
+     │
+Draw bounding box + label on image
+If no face is detected → prediction is skipped. This prevents classifying non-face images (e.g. apples, dogs) incorrectly.
+
+📊 Evaluation
+After training, the notebook prints:
+Validation Accuracy: XX.XX%
+
+Classification Report:
+              precision  recall  f1-score
+  with_mask      0.xx    0.xx     0.xx
+without_mask     0.xx    0.xx     0.xx
+
+Confusion Matrix:
+[[TP  FN]
+ [FP  TN]]
+Training and validation accuracy/loss curves are also plotted to check for overfitting.
