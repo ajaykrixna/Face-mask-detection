@@ -48,3 +48,18 @@ Step 3 — Run Inference
 out = robust_predict("/path/to/your/image.jpg", show=True)
 print(out)
 # {'status': 'ok', 'method': 'dnn_ssd', 'predictions': [{'box': [...], 'label': 'with_mask', 'confidence': 0.97}]}
+
+🧠 Model Architecture
+Input (128 × 128 × 3)
+     │
+Conv2D(32, 3×3, relu) → BatchNorm → MaxPool → Dropout(0.25)
+     │
+Conv2D(64, 3×3, relu) → BatchNorm → MaxPool → Dropout(0.25)
+     │
+Conv2D(128, 3×3, relu) → BatchNorm → MaxPool → Dropout(0.3)
+     │
+Flatten
+     │
+Dense(128, relu) → BatchNorm → Dropout(0.4)
+     │
+Dense(1, sigmoid)   ← Output: 0 = with_mask, 1 = without_mask
