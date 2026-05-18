@@ -108,3 +108,29 @@ Confusion Matrix:
 [[TP  FN]
  [FP  TN]]
 Training and validation accuracy/loss curves are also plotted to check for overfitting.
+
+
+🧩 Key Concepts Explained Simply
+ImageDataGenerator — Loads images from disk and applies random transformations to artificially increase variety in training data.
+flow_from_directory — Reads images from folder structure. Folder name = class label. No manual annotation needed.
+Conv2D — Scans image with a small filter, detects patterns like edges and textures.
+MaxPool2D — Shrinks feature maps by half, keeping only the strongest signals.
+relu — Activation function that removes negative values. Keeps training fast and stable.
+sigmoid — Squishes output to 0–1. Threshold 0.5 separates the two classes.
+Dropout — Randomly disables neurons during training to prevent memorization.
+BatchNormalization — Normalizes layer outputs to keep training stable.
+Adam — Optimizer that automatically adjusts learning speed per weight.
+binary_crossentropy — Loss function for 2-class problems. Measures prediction error.
+
+⚠️ Notes
+
+Model trained on Kaggle (P100 GPU). Mixed precision (float16) enabled for speed — the final Dense layer uses float32 to avoid output issues.
+Class weights computed to handle slight class imbalance between with_mask and without_mask.
+Inference uses DNN SSD face detector only (no Haar fallback, no sliding window) to avoid false positives on non-face images.
+Label map saved as label_map.json: {0: "with_mask", 1: "without_mask"}.
+
+
+📌 Credits
+
+Dataset: omkargurav on Kaggle
+Face detector: OpenCV DNN SSD — res10_300x300
